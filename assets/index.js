@@ -38,10 +38,10 @@ $(document).ready(function() {
             var lowTemp=$("<p>").text("Min Temperature: " + response.main.temp_min);
             // high temp
             var highTemp=$("<p>").text("Max Temperature: " + response.main.temp_max);
-
+            // append to front end
             $("#weather-current").append(title, currentTemp, humidityLevel, windSpeed, lowTemp, highTemp);
             // cb for forecast function (weatherSearch)
-            
+
         })
     }
     function uvIndex(lat, lon){
