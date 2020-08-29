@@ -5,19 +5,21 @@ $(document).ready(function() {
         var cityName = $("#city").val();
         console.log(cityName)
         weatherSearch(cityName);
+        // forecastSearch(cityName);
         $("#city").val("");
     });
-    function forecastSearch(city){
-    console.log(city)
-    $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial",
-        method: "GET"
-    }).then(function(response){
-        console.log(response)
-        //build out responses and append to forecast div on front end
-    });
+    // function forecastSearch(city){
+    // $.ajax({
+    //     url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial",
+    //     method: "GET"
+    // }).then(function(response){
+    //     console.log(response)
+    //     //build out responses and append to forecast div on front end
+    //     weatherForecast(response.q)
+    //     var title=$("<h3>").text(response.name);
+    // });
 
-    };
+    // };
     function weatherSearch(city){
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial",
@@ -27,13 +29,19 @@ $(document).ready(function() {
             uvIndex(response.coord.lat, response.coord.lon)
             var title=$("<h3>").text(response.name);
             // current temp
+            var currentTemp=$("<p>").text("Current Temperature: " + response.main.temp);
             // humidity level
+            var humidityLevel=$("<p>").text("Humidity Level: " + response.main.humidity);
             // wind speed
-            // high temp
+            var windSpeed=$("<p>").text("Wind Speed: " + response.wind.speed);
             // low temp
+            var lowTemp=$("<p>").text("Min Temperature: " + response.main.temp_min);
+            // high temp
+            var highTemp=$("<p>").text("Max Temperature: " + response.main.temp_max);
 
-            $("#weather-current").append(title, );
+            $("#weather-current").append(title, currentTemp, humidityLevel, windSpeed, lowTemp, highTemp);
             // cb for forecast function (weatherSearch)
+            
         })
     }
     function uvIndex(lat, lon){
